@@ -12,7 +12,8 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.67.5",
-    "react-native-chat-sdk": "/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0"
+    "react-native-chat-sdk": "/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0",
+    "react-native-push-collection": "/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

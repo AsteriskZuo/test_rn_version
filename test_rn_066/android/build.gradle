@@ -4,18 +4,33 @@ buildscript {
     ext {
         buildToolsVersion = "30.0.2"
         minSdkVersion = 21
-        compileSdkVersion = 30
+        compileSdkVersion = 33
         targetSdkVersion = 30
         ndkVersion = "21.4.7075529"
     }
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://developer.hihonor.com/repo' }
+        maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.2")
+        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath("com.facebook.react:react-native-gradle-plugin")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        // fcm config
+        // NOTE: if you are on react-native 0.71 or below, you must not update
+        //       the google-services plugin past version 4.3.15 as it requires gradle >= 7.3.0
+        classpath 'com.google.gms:google-services:4.3.15'
+
+        // honor config
+        // 增加asplugin插件配置，推荐您使用最新版本。
+        classpath 'com.hihonor.mcs:asplugin:2.0.1.300'
+
+        // huawei config
+        // 增加AGC插件配置，请您参见AGC插件依赖关系选择合适的AGC插件版本。
+        classpath 'com.huawei.agconnect:agcp:1.9.1.301'
     }
 }
 
@@ -31,8 +46,17 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
+        mavenCentral {
+            // We don't want to fetch react-native from Maven Central as there are
+            // older versions over there.
+            content {
+                excludeGroup "com.facebook.react"
+            }
+        }
 
         google()
         maven { url 'https://www.jitpack.io' }
+        maven { url 'https://developer.hihonor.com/repo' }
+        maven { url 'https://developer.huawei.com/repo/' }
     }
 }

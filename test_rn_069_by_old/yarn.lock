@@ -8101,11 +8101,11 @@ __metadata:
 
 "react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0::locator=test_rn_068_by_old%40workspace%3A.":
   version: 1.6.3-rn72.0
-  resolution: "react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0#/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0::hash=e99852&locator=test_rn_068_by_old%40workspace%3A."
+  resolution: "react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0#/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0::hash=47b488&locator=test_rn_068_by_old%40workspace%3A."
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/096b57ea405fa6ce6a1f664697e0eaf6e395fa2f66e7752991aeecbe7e8d62212652b731f684e82e33913d52aec75d8eb679156918e5b63cf238ea9d0e97f95f
+  checksum: 10c0/083510a99a68bc9f59964552d92a932c4a46ca3482a19bb4dd0cffdca16e9e5502fd01147042ba32d4fce2ef3d5a82e3e227c452d611e0b48f5e422fb22797ec
   languageName: node
   linkType: hard
 
@@ -8125,6 +8125,16 @@ __metadata:
   version: 0.0.7
   resolution: "react-native-gradle-plugin@npm:0.0.7"
   checksum: 10c0/453c39518ce6da842278c38cd748872e31fca54d4355d7c768ae167d4b5c8f96652bee84158a02512e2fbfc9f6e0645ae0c5f131feffc8efd0af98d03787f331
+  languageName: node
+  linkType: hard
+
+"react-native-push-collection@file:/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0::locator=test_rn_068_by_old%40workspace%3A.":
+  version: 1.0.0
+  resolution: "react-native-push-collection@file:/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0#/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0::hash=f7b7de&locator=test_rn_068_by_old%40workspace%3A."
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/a78386a5c71270c32eb8b93e732af426736b7ed1894c6b9acdd222db1488e580eb1da810f3e3c2593da233ec7e411ee1dd1f4ebb3d36f993033fdcd6d344041f
   languageName: node
   linkType: hard
 
@@ -9463,6 +9473,7 @@ __metadata:
     react: "npm:18.0.0"
     react-native: "npm:0.69.5"
     react-native-chat-sdk: /Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0
+    react-native-push-collection: /Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0
     react-test-renderer: "npm:18.0.0"
   languageName: unknown
   linkType: soft

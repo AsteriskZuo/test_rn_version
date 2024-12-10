@@ -1,5 +1,14 @@
 apply plugin: "com.android.application"
 
+// fcm config
+apply plugin: 'com.google.gms.google-services'
+
+// honor config
+apply plugin: 'com.hihonor.mcs.asplugin'
+
+// huawei config
+apply plugin: 'com.huawei.agconnect'
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 

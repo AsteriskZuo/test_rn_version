@@ -9,6 +9,7 @@ def __apply_flipper_post_install_workaround(installer)
     if target.name == 'Flipper'
       file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
       if File.exist?(file_path)
+        File.chmod(0644, file_path)
         contents = File.read(file_path)
         unless contents.include?('#include <functional>')
           File.open(file_path, 'w') do |file|
@@ -25,7 +26,7 @@ def __apply_Xcode_15_cxx17_post_install_workaround(installer)
   # https://github.com/facebook/react-native/issues/43335#issuecomment-1982794252
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      puts "Target: #{target.name} #{config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'].is_a?(Array)} #{config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'].is_a?(String)}"
+      # puts "Target: #{target.name} #{config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'].is_a?(Array)} #{config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'].is_a?(String)}"
       config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ''
       if !config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'].include?('$(inherited)')
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << ' '
@@ -57,21 +58,6 @@ def __apply_yoga_post_install_workaround(installer)
     end
   end
 end
-# Force pods to match minimum iOS version for React Native
-# Fixes build issue on Xcode Cloud where some pods
-# Use iOS 12 calls despite being set as iOS 11
-def __apply_minimum_target_post_install_workaround(installer)
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      current_target = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
-      minimum_target = defined?(min_ios_version_supported) ? min_ios_version_supported : 12.4
-      minimum_target = 12.4
-      if current_target.to_f < minimum_target
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_target
-      end
-    end
-  end
-end
 
 #  boost/boost/container_hash/hash.hpp:131:33: No template named 'unary_function' in namespace 'std'; did you mean '__unary_function'?
 def __apply_boost_post_install_workaround(installer)
@@ -91,26 +77,17 @@ def __apply_boost_post_install_workaround(installer)
   end
 end
 
-def __apply_rn_068_chatsdk_post_install_workaround(installer)
-  # https://github.com/facebook/react-native/issues/36758
-  # https://ruby-doc.org/3.3.6/String.html
+# Force pods to match minimum iOS version for React Native
+# Fixes build issue on Xcode Cloud where some pods
+# Use iOS 12 calls despite being set as iOS 11
+def __apply_minimum_target_post_install_workaround(installer)
   installer.pods_project.targets.each do |target|
-    if target.name == 'react-native-chat-sdk'
-      target.build_configurations.each do |config|
-        xcconfig = config.build_settings
-        puts "Target: #{target.name}"
-        puts "XCConfig: #{xcconfig}"
-        
-        xcconfig['OTHER_LDFLAGS'] ||= ''
-        xcconfig['OTHER_LDFLAGS'] << ' -ObjC'
-        
-        xcconfig['GCC_PREPROCESSOR_DEFINITIONS'] ||= []
-        xcconfig['GCC_PREPROCESSOR_DEFINITIONS'] += [
-          '$(inherited)',
-          'OBJC_LANGUAGE',
-          'REACT_NATIVE_ARCHITECTURE',
-          'IOS_PLATFORM'
-        ]
+    target.build_configurations.each do |config|
+      current_target = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+      minimum_target = defined?(min_ios_version_supported) ? min_ios_version_supported : 12.4
+      minimum_target = 12.4
+      if current_target.to_f < minimum_target
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_target
       end
     end
   end
@@ -118,6 +95,11 @@ end
 
 target 'test_rn_067' do
   config = use_native_modules!
+
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseAuth', '>=10.0.0', :modular_headers => true
+  pod 'FirebaseCore', '>=10.0.0', :modular_headers => true
+  pod 'FirebaseMessaging', '>=10.0.0', :modular_headers => true
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -134,7 +116,7 @@ target 'test_rn_067' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!()
+  use_flipper!({'Flipper-Glog' => '0.3.9'})
 
   post_install do |installer|
     react_native_post_install(installer)
@@ -144,6 +126,5 @@ target 'test_rn_067' do
     __apply_Xcode_15_cxx17_post_install_workaround(installer)
     __apply_minimum_target_post_install_workaround(installer)
     __apply_yoga_post_install_workaround(installer)
-    # __apply_rn_068_chatsdk_post_install_workaround(installer)
   end
 end

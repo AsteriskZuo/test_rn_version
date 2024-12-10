@@ -1452,6 +1452,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-async-storage/async-storage@npm:^1.24.0":
+  version: 1.24.0
+  resolution: "@react-native-async-storage/async-storage@npm:1.24.0"
+  dependencies:
+    merge-options: "npm:^3.0.4"
+  peerDependencies:
+    react-native: ^0.0.0-0 || >=0.60 <1.0
+  checksum: 10c0/cad2098ef84251f2ab8ebc07b750e585a20ac7ca07f26e5441e957a76f2b66f01d10ef5fbddb63d675431377b31beb5208548093e1eb17d262d2184b51133f4d
+  languageName: node
+  linkType: hard
+
+"@react-native-clipboard/clipboard@npm:1.13.2":
+  version: 1.13.2
+  resolution: "@react-native-clipboard/clipboard@npm:1.13.2"
+  peerDependencies:
+    react: ">=16.0"
+    react-native: ">=0.57.0"
+  checksum: 10c0/7f4c1b40b3f22633053cd83e3c0cb669fe123212cf84724863c5433b1ee18cac6a1cdba845cc01cfe737b92b7bca4c236754eb1f3efa73a4de66b3f2bc954caa
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-debugger-ui@npm:^7.0.3":
   version: 7.0.3
   resolution: "@react-native-community/cli-debugger-ui@npm:7.0.3"
@@ -5354,6 +5375,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-plain-obj@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "is-plain-obj@npm:2.1.0"
+  checksum: 10c0/e5c9814cdaa627a9ad0a0964ded0e0491bfd9ace405c49a5d63c88b30a162f1512c069d5b80997893c4d0181eadc3fed02b4ab4b81059aba5620bfcdfdeb9c53
+  languageName: node
+  linkType: hard
+
 "is-plain-object@npm:^2.0.3, is-plain-object@npm:^2.0.4":
   version: 2.0.4
   resolution: "is-plain-object@npm:2.0.4"
@@ -6622,6 +6650,15 @@ __metadata:
   dependencies:
     object-visit: "npm:^1.0.0"
   checksum: 10c0/fb3475e5311939a6147e339999113db607adc11c7c3cd3103e5e9dbf502898416ecba6b1c7c649c6d4d12941de00cee58b939756bdf20a9efe7d4fa5a5738b73
+  languageName: node
+  linkType: hard
+
+"merge-options@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "merge-options@npm:3.0.4"
+  dependencies:
+    is-plain-obj: "npm:^2.1.0"
+  checksum: 10c0/02b5891ceef09b0b497b5a0154c37a71784e68ed71b14748f6fd4258ffd3fe4ecd5cb0fd6f7cae3954fd11e7686c5cb64486daffa63c2793bbe8b614b61c7055
   languageName: node
   linkType: hard
 
@@ -8000,13 +8037,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.2::locator=test_rn_0688_by_old%40workspace%3A.":
+"react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0::locator=test_rn_0688_by_old%40workspace%3A.":
   version: 1.6.3-rn72.0
-  resolution: "react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.2#/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.2::hash=af7fa2&locator=test_rn_0688_by_old%40workspace%3A."
+  resolution: "react-native-chat-sdk@file:/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0#/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0::hash=47b488&locator=test_rn_0688_by_old%40workspace%3A."
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/a318372f6c0f74e137d9b00f63b443416344596cffb7988ef050acce6a1cebfb327995c65662f69d581a2e082e94c14759c5f8105d69bdcc23ed61f0be444e3f
+  checksum: 10c0/083510a99a68bc9f59964552d92a932c4a46ca3482a19bb4dd0cffdca16e9e5502fd01147042ba32d4fce2ef3d5a82e3e227c452d611e0b48f5e422fb22797ec
   languageName: node
   linkType: hard
 
@@ -8026,6 +8063,16 @@ __metadata:
   version: 0.0.6
   resolution: "react-native-gradle-plugin@npm:0.0.6"
   checksum: 10c0/ff203dee4572af189fad20689abea1ca42dfcc53bd91a94193d0e95a89f8a0431e61b7a793b1255da6b3f2f8f8a8d56e39d063833d6bbe31a2ad06783e7d33b2
+  languageName: node
+  linkType: hard
+
+"react-native-push-collection@file:/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0::locator=test_rn_0688_by_old%40workspace%3A.":
+  version: 1.0.0
+  resolution: "react-native-push-collection@file:/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0#/Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0::hash=971b05&locator=test_rn_0688_by_old%40workspace%3A."
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/a4fcb6efa136c3763f0d355aef54a83096809fb13caf4364f7ca5db4d16460cacd3f4faaa06f3307a3b51df2daf32caea538aa806b940c3d64c11565cb3198bf
   languageName: node
   linkType: hard
 
@@ -9414,6 +9461,8 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.12.9"
     "@babel/runtime": "npm:^7.12.5"
+    "@react-native-async-storage/async-storage": "npm:^1.24.0"
+    "@react-native-clipboard/clipboard": "npm:1.13.2"
     "@react-native-community/eslint-config": "npm:^2.0.0"
     babel-jest: "npm:^26.6.3"
     eslint: "npm:^7.32.0"
@@ -9421,7 +9470,8 @@ __metadata:
     metro-react-native-babel-preset: "npm:^0.67.0"
     react: "npm:17.0.2"
     react-native: "npm:0.68.5"
-    react-native-chat-sdk: /Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.2
+    react-native-chat-sdk: /Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0
+    react-native-push-collection: /Users/asterisk/tmp/2024-11-09/react-native-push-collection-1.0.0
     react-test-renderer: "npm:17.0.2"
   languageName: unknown
   linkType: soft

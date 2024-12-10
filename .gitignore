@@ -1,0 +1,21 @@
+# fcm ignore
+google-services.json
+GoogleService-Info.plist
+
+# huawei ignore
+agconnect-services.json
+
+# honor ignore
+mcs-services.json
+
+# vivo ignore
+
+# oppo ignore
+
+# meizu ignore
+
+# xiaomi ignore
+
+env.ts
+
+.DS_Store
