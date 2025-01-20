@@ -6,6 +6,21 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = {};
+const config = {
+  watchFolders: [
+    '/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0',
+    // path.resolve(__dirname, 'node_modules/react-native-chat-sdk'),
+  ],
+  resolver: {
+    extraNodeModules: {
+      'react-native-chat-sdk': '/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0',
+      // 'react-native-chat-sdk': path.resolve(__dirname, 'node_modules/react-native-chat-sdk'),
+    },
+    nodeModulesPaths: [
+      '/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0/node_modules',
+      '/Users/asterisk/Codes/zuoyu/test_rn_version/test_rn_076/node_modules',
+    ],
+  },
+};
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);

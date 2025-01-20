@@ -17,9 +17,10 @@ const config = {
       'react-native-chat-sdk': '/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0',
       // 'react-native-chat-sdk': path.resolve(__dirname, 'node_modules/react-native-chat-sdk'),
     },
-    // nodeModulesPaths: [
-    //   '/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0/node_modules',
-    // ],
+    nodeModulesPaths: [
+      '/Users/asterisk/tmp/2024-11-09/react-native-chat-sdk-1.6.3-rn72.0/node_modules',
+      '/Users/asterisk/Codes/zuoyu/test_rn_version/test_rn_075/node_modules',
+    ],
   },
 };
 

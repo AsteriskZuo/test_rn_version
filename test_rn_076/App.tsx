@@ -5,58 +5,126 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import * as React from 'react';
 import {
+  Pressable,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   useColorScheme,
-  View,
 } from 'react-native';
-
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  ChatClient,
+  ChatError,
+  ChatGroupEventListener,
+  ChatMessage,
+  ChatMessageStatusCallback,
+  ChatOptions,
+} from 'react-native-chat-sdk';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-function Section({children, title}: SectionProps): React.JSX.Element {
+const appKey = '1135220126133718#demo';
+const gid = 'asterisk003';
+const gps = 'qwerty';
+const peer = 'asterisk001';
+
+function useApp() {
   const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
+  const [id, setId] = React.useState<string>(gid);
+  const [token, setToken] = React.useState<string>(gps);
+  const init = () => {
+    ChatClient.getInstance()
+      .init(new ChatOptions({appKey, debugModel: true}))
+      .then(() => {
+        console.log('init success');
+        ChatClient.getInstance().groupManager.addGroupListener({
+          onMemberExited: (params: {groupId: string; member: string}) => {
+            console.log('test:zuoyu:onMemberExited', params);
           },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
+          onMemberRemoved: (params: {groupId: string; groupName?: string}) => {
+            console.log('test:zuoyu:onMemberRemoved', params);
           },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+        } as ChatGroupEventListener);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const login = () => {
+    ChatClient.getInstance()
+      .login(id, token, true)
+      .then(() => {
+        console.log('login success');
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+  const logout = () => {
+    ChatClient.getInstance()
+      .logout()
+      .then(() => {
+        console.log('logout success');
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+  const custom = () => {
+    ChatClient.getInstance()
+      .groupManager.leaveGroup('264945479516163')
+      .then()
+      .catch();
+  };
+  const send = () => {
+    const msg = ChatMessage.createTextMessage(peer, '1');
+    ChatClient.getInstance()
+      .chatManager.sendMessage(msg, {
+        onError: (localMsgId: string, error: ChatError) => {
+          console.log('onError', error);
+        },
+        onSuccess: (message: ChatMessage) => {
+          console.log('onSuccess', message);
+        },
+      } as ChatMessageStatusCallback)
+      .then(() => {
+        console.log('send success');
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+  return {
+    isDarkMode,
+    id,
+    setId,
+    token,
+    setToken,
+    init,
+    login,
+    logout,
+    custom,
+    send,
+  };
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function App(): JSX.Element {
+  const {
+    isDarkMode,
+    id,
+    setId,
+    token,
+    setToken,
+    init,
+    login,
+    logout,
+    custom,
+    send,
+  } = useApp();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -68,50 +136,41 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <TextInput
+        style={{height: 40, borderColor: 'orange', borderWidth: 1, margin: 2}}
+        value={id}
+        onChangeText={setId}
+      />
+      <TextInput
+        style={{height: 40, borderColor: 'orange', borderWidth: 1, margin: 2}}
+        value={token}
+        onChangeText={setToken}
+      />
+      <Pressable style={styles.test} onPress={init}>
+        <Text>{'init'}</Text>
+      </Pressable>
+      <Pressable style={styles.test} onPress={login}>
+        <Text>{'login'}</Text>
+      </Pressable>
+      <Pressable style={styles.test} onPress={logout}>
+        <Text>{'logout'}</Text>
+      </Pressable>
+      <Pressable style={styles.test} onPress={custom}>
+        <Text>{'custom'}</Text>
+      </Pressable>
+      <Pressable style={styles.test} onPress={send}>
+        <Text>{'send'}</Text>
+      </Pressable>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  test: {
+    height: 40,
+    width: '100%',
+    marginVertical: 5,
+    backgroundColor: 'green',
   },
 });
 
